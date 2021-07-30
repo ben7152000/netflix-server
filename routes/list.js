@@ -2,7 +2,7 @@ const router = require('express').Router()
 const List = require('../models/List')
 const verify = require('../verifyToken') // 確認有無 token
 
-// 建立 list
+// 建立電影清單
 router.post('/', verify, async (req, res) => {
   const { isAdmin } = req.user
   // 權限檢查
@@ -19,7 +19,7 @@ router.post('/', verify, async (req, res) => {
   }
 })
 
-// 取得 list
+// 取得電影清單
 router.get('/', verify, async (req, res) => {
   const typeQuery = req.query.type
   const genreQuery = req.query.genre
@@ -47,7 +47,7 @@ router.get('/', verify, async (req, res) => {
   }
 })
 
-// 刪除 list
+// 刪除電影清單
 router.delete('/:id', verify, async (req, res) => {
   const { isAdmin } = req.user
   const id = req.params.id
@@ -55,7 +55,7 @@ router.delete('/:id', verify, async (req, res) => {
   if (isAdmin) {
     try {
       await List.findByIdAndDelete(id)
-      return res.status(201).json('List 已刪除')
+      return res.status(201).json('電影清單已刪除')
     } catch (err) {
       return res.status(500).json(err)
     }
