@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/User') // 使用者資料庫
 const bcrypt = require('bcrypt') // 加密套件
-const jwt = require('jsonwebtoken') // jwt套件
+const jwt = require('jsonwebtoken') // jwt 套件
 
 // 註冊
 router.post('/register', async (req, res) => {
@@ -17,8 +17,8 @@ router.post('/register', async (req, res) => {
     // 建立新使用者
     const user = await newUser.save()
     return res.status(201).json(user)
-  } catch (e) {
-    return res.status(500).json(e)
+  } catch (err) {
+    return res.status(500).json(err)
   }
 })
 
