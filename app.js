@@ -19,12 +19,8 @@ mongoose.connect(
     useUnifiedTopology: true,
     useCreateIndex: true
   })
-  .then(() => {
-    console.log('DB connection successful!!')
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+  .then(() => { console.log('DB connection successful!!') })
+  .catch((err) => { console.log(err) })
 
 // 路由
 app.use('/api/auth', authRoute)
