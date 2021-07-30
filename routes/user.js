@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../models/User') // 使用者資料庫
+const User = require('../models/User')
 const bcrypt = require('bcrypt') // 加密套件
 const verify = require('../verifyToken') // 確認有無 token
 
@@ -17,11 +17,11 @@ router.get('/find/:id', async (req, res) => {
 
 // 取得所有使用者
 router.get('/', verify, async (req, res) => {
-  const query = req.query.new
+  const newQuery = req.query.new
   const isAdmin = req.user.isAdmin // 取出權限
   if (isAdmin) {
     try {
-      const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find()
+      const users = newQuery ? await User.find().sort({ _id: -1 }).limit(5) : await User.find()
       return res.status(200).json(users)
     } catch (err) {
       return res.status(500).json(err)

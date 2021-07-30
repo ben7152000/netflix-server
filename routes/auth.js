@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../models/User') // 使用者資料庫
+const User = require('../models/User')
 const bcrypt = require('bcrypt') // 加密套件
 const jwt = require('jsonwebtoken') // jwt 套件
 
