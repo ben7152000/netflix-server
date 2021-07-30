@@ -1,15 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const PORT = process.env.PORT || 8081
 const dotenv = require('dotenv')
+const PORT = process.env.PORT || 8081
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/user')
 const movieRoute = require('./routes/movie')
 const listRoute = require('./routes/list')
 
 dotenv.config()
-app.use(express.json())
 
 // 資料庫
 mongoose.connect(
@@ -21,6 +20,8 @@ mongoose.connect(
   })
   .then(() => { console.log('DB connection successful!!') })
   .catch((err) => { console.log(err) })
+
+app.use(express.json())
 
 // 路由
 app.use('/api/auth', authRoute)
